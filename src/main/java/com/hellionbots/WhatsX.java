@@ -135,11 +135,13 @@ public class WhatsX extends TelegramLongPollingBot {
 
             inlineKeyboardMarkup.setKeyboard(rowList);
 
+            String handler = getHandler();
+
             SendMessage sm = new SendMessage();
             sm.setChatId(chatId(update));
             sm.setText("Welcome to the Help Section of WhatsX Bot\n\n" + "Available Commands :\n" + "1. SendMessage\n"
-                    + "2. Get Info\n" + "3. Spam\n\n" + "Formats :\n" + getHandler() + "msg <Target Number> <Text>\n"
-                    + getHandler() + "info <Target Number>\n" + getHandler()
+                    + "2. Get Info\n" + "3. Spam\n\n" + "Formats :\n" + handler + "msg <Target Number> <Text>\n"
+                    + handler + "info <Target Number>\n" + handler
                     + "spam <Target Number> <No. of Messages> <Text>\n\n"
                     + "Powered By " + channel());
             sm.setReplyMarkup(inlineKeyboardMarkup);
