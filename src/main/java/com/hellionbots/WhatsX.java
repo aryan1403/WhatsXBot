@@ -82,7 +82,7 @@ public class WhatsX extends TelegramLongPollingBot {
 
             @Override
             public void onWAMessage(WAMessage[] messages) {
-                
+
             }
 
             @Override
@@ -103,96 +103,45 @@ public class WhatsX extends TelegramLongPollingBot {
                     + " for more information about Bot's Like me\n" + "Join " + channel() + " for Regular Updates");
         }
 
-        else if(cmd.equalsIgnoreCase(getHandler()+"spam "+meow2[1]+" "+meow2[2]+" "+cmd.replace(getHandler()+"spam "+meow2[1]+" "+meow2[2]+" ", ""))) {
-            try {
-                if(Integer.parseInt(meow2[2]) > 50) {
-                    sendMessage(update, "You can't Send more than 50 Spam messages at a time");
-                }
-                else{
-                    if(meow2[1].startsWith("+")) {
-                        meow2[1] = meow2[1].replace("+", "");
-                    }
-                    for (int i = 0; i < Integer.parseInt(meow2[2]); i++) {
-                        client.sendMessage(meow2[1]+"@s.whatsapp.net", cmd.replace(getHandler()+"spam "+meow2[1]+" "+meow2[2]+" ", ""));
-                    }
-                    sendMessage(update, "Send Messages Successfully\n\n⚠️Note : We don't Promote any Illegal activities the Owner will not be responsible for any harm to anybody via this Bot.\nThis is for Educational Purpose Only");
-                }
-            } 
-            catch(Exception e){
-                sendMessage(update, "Kindly See the Format\n\nFormat for spam is :\n/spam <Target Number> <Number of Messages to be sent> <Text>\n\nExample : /spam 12345 10 hi");
-            }
-        }
-
-        else if(cmd.equalsIgnoreCase(getHandler()+"info "+ cmd.replace(getHandler()+"info ", ""))) {
-            try{
-                long start = System.nanoTime();
-                Message meow = sendMessage(update, "Getting Info...");
-                String number = cmd.replace(getHandler()+"info ", "");
-                if(number.startsWith("+")) {
-                    number = number.replace("+", "");
-                }
-                BufferedImage bi = client.getChatPicture(number+"@s.whatsapp.net");
-                File outputfile = new File("pfp.png");
-                ImageIO.write(bi, "png", outputfile);
-                SendPhoto sendPhoto = new SendPhoto(chatId(update), new InputFile(outputfile));
-                String status = client.getStatus(number+"@s.whatsapp.net");
-                DeleteMessage deleteMessage = new DeleteMessage(chatId(update), meow.getMessageId());
-                execute(deleteMessage);
-                long end = System.nanoTime();
-                sendPhoto.setCaption(
-                    "Information Fetched in "+(Math.pow(10, -9)*(end-start)+"").substring(0,3) +"s\n\n"
-                    + "Status : " 
-                    + status
-                );
-                execute(sendPhoto);
-                outputfile.delete();
-            }catch(Exception e) {
-                sendMessage(update, "Kindly Check your Number");
-            }
-        }
-
         else if (cmd.equalsIgnoreCase(getHandler() + "help")) {
             InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
             InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
             InlineKeyboardButton inlineKeyboardButton2 = new InlineKeyboardButton();
             InlineKeyboardButton inlineKeyboardButton3 = new InlineKeyboardButton();
-            InlineKeyboardButton inlineKeyboardButton4 = new InlineKeyboardButton();
 
-            inlineKeyboardButton1.setText("Send Message");
-            inlineKeyboardButton1.setCallbackData("msg");
+            inlineKeyboardButton1.setText("Support");
+            inlineKeyboardButton1.setCallbackData("s");
+            inlineKeyboardButton1.setUrl("https://t.me/HellionBotSupport");
 
-            inlineKeyboardButton2.setText("Get Status");
-            inlineKeyboardButton2.setCallbackData("status");
+            inlineKeyboardButton2.setText("Channel");
+            inlineKeyboardButton2.setCallbackData("c");
+            inlineKeyboardButton2.setUrl("https://t.me/HellionBots");
 
-            inlineKeyboardButton3.setText("Get Profile Pic");
-            inlineKeyboardButton3.setCallbackData("pfp");
-
-            inlineKeyboardButton4.setText("Get Chats");
-            inlineKeyboardButton4.setCallbackData("gchats");
+            inlineKeyboardButton3.setText("Developer");
+            inlineKeyboardButton3.setUrl("https://t.me/Hellion_Coder");
+            inlineKeyboardButton3.setCallbackData("d");
 
             List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
             List<InlineKeyboardButton> keyboardButtonsRow2 = new ArrayList<>();
-            List<InlineKeyboardButton> keyboardButtonsRow3 = new ArrayList<>();
-            List<InlineKeyboardButton> keyboardButtonsRow4 = new ArrayList<>();
 
             keyboardButtonsRow1.add(inlineKeyboardButton1);
-            keyboardButtonsRow2.add(inlineKeyboardButton2);
-            keyboardButtonsRow3.add(inlineKeyboardButton3);
-            keyboardButtonsRow4.add(inlineKeyboardButton4);
+            keyboardButtonsRow1.add(inlineKeyboardButton2);
+            keyboardButtonsRow2.add(inlineKeyboardButton3);
 
             List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
             rowList.add(keyboardButtonsRow1);
             rowList.add(keyboardButtonsRow2);
-            rowList.add(keyboardButtonsRow3);
-            rowList.add(keyboardButtonsRow4);
 
             inlineKeyboardMarkup.setKeyboard(rowList);
 
             SendMessage sm = new SendMessage();
-            sm.setReplyToMessageId(update.getMessage().getMessageId());
             sm.setChatId(chatId(update));
-            sm.setText("Welcome to Help Section of WhatsXBot\n\n" + "Choose From the Below!");
+            sm.setText("Welcome to the Help Section of WhatsX Bot\n\n" + "Available Commands :\n" + "1. SendMessage\n"
+                    + "2. Get Info\n" + "3. Spam\n\n" + "Formats :\n" + getHandler() + "msg <Target Number> <Text>\n"
+                    + getHandler() + "info <Target Number>\n" + getHandler()
+                    + "spam <Target Number> <No. of Messages> <Text>\n\n" + "For any Query join " + support() + "\n"
+                    + "Powered By " + channel());
             sm.setReplyMarkup(inlineKeyboardMarkup);
 
             try {
@@ -202,9 +151,58 @@ public class WhatsX extends TelegramLongPollingBot {
             }
         }
 
-        else if (cmd.equalsIgnoreCase(getHandler() + "msg " + meow2[1] + " " +meow2[2])) {
+        else if (cmd.equalsIgnoreCase(getHandler() + "spam " + meow2[1] + " " + meow2[2] + " "
+                + cmd.replace(getHandler() + "spam " + meow2[1] + " " + meow2[2] + " ", ""))) {
             try {
-                client.sendMessage(meow2[1] + "@s.whatsapp.net", meow2[2]);
+                if (Integer.parseInt(meow2[2]) > 50) {
+                    sendMessage(update, "You can't Send more than 50 Spam messages at a time");
+                } else {
+                    if (meow2[1].startsWith("+")) {
+                        meow2[1] = meow2[1].replace("+", "");
+                    }
+                    for (int i = 0; i < Integer.parseInt(meow2[2]); i++) {
+                        client.sendMessage(meow2[1] + "@s.whatsapp.net",
+                                cmd.replace(getHandler() + "spam " + meow2[1] + " " + meow2[2] + " ", ""));
+                    }
+                    sendMessage(update,
+                            "Send Messages Successfully\n\n⚠️Note : We don't Promote any Illegal activities the Owner will not be responsible for any harm to anybody via this Bot.\nThis is for Educational Purpose Only");
+                }
+            } catch (Exception e) {
+                sendMessage(update, "Kindly See the Format\n\nFormat for spam is :\n" + getHandler()
+                        + "spam <Target Number> <Number of Messages to be sent> <Text>\n\nExample : /spam 12345 10 hi");
+            }
+        }
+
+        else if (cmd.equalsIgnoreCase(getHandler() + "info " + cmd.replace(getHandler() + "info ", ""))) {
+            try {
+                long start = System.nanoTime();
+                Message meow = sendMessage(update, "Getting Info...");
+                String number = cmd.replace(getHandler() + "info ", "");
+                if (number.startsWith("+")) {
+                    number = number.replace("+", "");
+                }
+                BufferedImage bi = client.getChatPicture(number + "@s.whatsapp.net");
+                File outputfile = new File("pfp.png");
+                ImageIO.write(bi, "png", outputfile);
+                SendPhoto sendPhoto = new SendPhoto(chatId(update), new InputFile(outputfile));
+                String status = client.getStatus(number + "@s.whatsapp.net");
+                DeleteMessage deleteMessage = new DeleteMessage(chatId(update), meow.getMessageId());
+                execute(deleteMessage);
+                long end = System.nanoTime();
+                sendPhoto.setCaption("Information Fetched in " + (Math.pow(10, -9) * (end - start) + "").substring(0, 3)
+                        + "s\n\n" + "Status : " + status);
+                execute(sendPhoto);
+                outputfile.delete();
+            } catch (Exception e) {
+                sendMessage(update, "Kindly Check your Number");
+            }
+        }
+
+        else if (cmd.equalsIgnoreCase(
+                getHandler() + "msg " + meow2[1] + " " + cmd.replace(getHandler() + "msg " + meow2[1] + " ", ""))) {
+            try {
+                client.sendMessage(meow2[1] + "@s.whatsapp.net",
+                        cmd.replace(getHandler() + "msg " + meow2[1] + " ", ""));
                 sendMessage(update, "Message Sent Successfully! 🥳");
             } catch (Exception e) {
                 sendMessage(update, "Kindly Check the Number!");
