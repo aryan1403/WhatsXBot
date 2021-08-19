@@ -175,11 +175,11 @@ public class WhatsX extends TelegramLongPollingBot {
             }
         }
 
-        else if (cmd.equalsIgnoreCase(getHandler() + "info " + cmd.replace(getHandler() + "info ", ""))) {
+        else if (cmd.equalsIgnoreCase(getHandler() + "info " + meow2[1])) {
             try {
                 long start = System.nanoTime();
                 Message meow = sendMessage(update, "Getting Info...");
-                String number = cmd.replace(getHandler() + "info ", "");
+                String number = meow2[1];
                 if (number.startsWith("+")) {
                     number = number.replace("+", "");
                 }
