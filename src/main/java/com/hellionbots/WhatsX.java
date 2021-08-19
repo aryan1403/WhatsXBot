@@ -263,13 +263,13 @@ public class WhatsX extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        String s = "WhatsXBot";
+        String s = configuration.botUserName;
         return s;
     }
 
     @Override
     public String getBotToken() {
-        String s = "1893058621:AAE4OYku_jp4wjC1iXWnlRHJRIZRZkRYC4g";
+        String s = configuration.botToken;
         return s;
     }
 }
