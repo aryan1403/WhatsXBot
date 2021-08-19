@@ -98,8 +98,8 @@ public class WhatsX extends TelegramLongPollingBot {
         if (cmd.equalsIgnoreCase(getHandler() + "start")) {
             sendMessage(update, "Hello, " + update.getMessage().getFrom().getFirstName() + ",\n"
                     + "Welcome To WhatsX Bot\nI can Help you Manage your WhatsApp Account Directly from Telegram!\n"
-                    + "Type /help to see all the Available Command's"
-                    + "Note : Don't Spam the Bot Otherwise will Block you\n\n" + "Join " + support()
+                    + "Type /help to see all the Available Command's\n\n"
+                    + "Join " + support()
                     + " for more information about Bot's Like me\n" + "Join " + channel() + " for Regular Updates");
         }
 
@@ -140,7 +140,7 @@ public class WhatsX extends TelegramLongPollingBot {
             sm.setText("Welcome to the Help Section of WhatsX Bot\n\n" + "Available Commands :\n" + "1. SendMessage\n"
                     + "2. Get Info\n" + "3. Spam\n\n" + "Formats :\n" + getHandler() + "msg <Target Number> <Text>\n"
                     + getHandler() + "info <Target Number>\n" + getHandler()
-                    + "spam <Target Number> <No. of Messages> <Text>\n\n" + "For any Query join " + support() + "\n"
+                    + "spam <Target Number> <No. of Messages> <Text>\n\n"
                     + "Powered By " + channel());
             sm.setReplyMarkup(inlineKeyboardMarkup);
 
