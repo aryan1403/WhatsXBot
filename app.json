@@ -1,7 +1,7 @@
 {
     "name": "WhatsX Bot",
     "description": "WhatsApp Bot",
-    "repository": "https://github.com/Hellboy-Aaryan/WhatsX",
+    "repository": "https://github.com/Hellboy-Aaryan/WhatsXBot",
     "success_url": "https://t.me/Hellion_Coder",
     "stack": "container",
     "env": {
