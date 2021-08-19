@@ -105,10 +105,18 @@ public class WhatsX extends TelegramLongPollingBot {
 
         else if(cmd.equalsIgnoreCase(getHandler()+"spam "+meow2[1]+" "+meow2[2]+" "+cmd.replace(getHandler()+"spam "+meow2[1]+" "+meow2[2]+" ", ""))) {
             try {
-                for (int i = 0; i < Integer.parseInt(meow2[2]); i++) {
-                    client.sendMessage(meow2[1]+"@s.whatsapp.net", cmd.replace(getHandler()+"spam "+meow2[1]+" "+meow2[2]+" ", ""));
+                if(Integer.parseInt(meow2[2]) > 50) {
+                    sendMessage(update, "You can't Send more than 50 Spam messages at a time");
                 }
-                sendMessage(update, "Send Messages Successfully\n\n⚠️Note : We don't Promote any Illegal activities the Owner will not be responsible for any harm to anybody via this Bot.\nThis is for Educational Purpose Only");
+                else{
+                    if(meow2[1].startsWith("+")) {
+                        meow2[1] = meow2[1].replace("+", "");
+                    }
+                    for (int i = 0; i < Integer.parseInt(meow2[2]); i++) {
+                        client.sendMessage(meow2[1]+"@s.whatsapp.net", cmd.replace(getHandler()+"spam "+meow2[1]+" "+meow2[2]+" ", ""));
+                    }
+                    sendMessage(update, "Send Messages Successfully\n\n⚠️Note : We don't Promote any Illegal activities the Owner will not be responsible for any harm to anybody via this Bot.\nThis is for Educational Purpose Only");
+                }
             } 
             catch(Exception e){
                 sendMessage(update, "Kindly See the Format\n\nFormat for spam is :\n/spam <Target Number> <Number of Messages to be sent> <Text>\n\nExample : /spam 12345 10 hi");
