@@ -1,0 +1,24 @@
+{
+    "name": "WhatsX Bot",
+    "description": "WhatsApp Bot",
+    "repository": "https://github.com/Hellboy-Aaryan/WhatsX",
+    "success_url": "https://t.me/Hellion_Coder",
+    "stack": "container",
+    "env": {
+        "botToken": {
+            "description": "Token of your bot, from @BotFather.",
+            "value": "",
+            "required": true
+        },
+        "botUserName": {
+            "description": "Bot Username, from @BotFather.",
+            "value": "",
+            "required": true
+        },
+        "handler": {
+            "description": "The command handler to invoke commands.",
+            "value": "/",
+            "required": false
+        }
+    }
+}
