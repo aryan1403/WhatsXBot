@@ -1,5 +1,5 @@
 # WhatsXBot
-  WhatsX is a powerful **open-source** __Telegram Bot__ made with Java by [Aaryan](https://t.me/Hellion_Coder).
+  WhatsX is a powerful **open-source** __Telegram Bot__ made with Java by [Aaryan](https://t.me/aryan1403).
 
   This is a **WhatsApp Manager** Bot which will help you to Manage your WhatsApp Account Directly from Telegram.
   
